@@ -13,3 +13,11 @@ func FindImages(c *gin.Context) {
 	models.DB.Find(&images)
 	c.JSON(http.StatusOK, gin.H{"data": images})
 }
+
+// Get image detail by ID
+func GetImage(c *gin.Context) {
+	id := c.Params.ByName("id")
+	var image []models.Image
+	models.DB.First(&image, id)
+	c.JSON(http.StatusOK, gin.H{"data": image})
+}
